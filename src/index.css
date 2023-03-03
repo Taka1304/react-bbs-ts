@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+  .arrow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    transform: rotate(45deg);
+    border-top: 3px solid #014897;
+    border-right: 3px solid #014897;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    transition: 0.3s;
+  }
+}
 
 body {
   margin: 0;
@@ -15,4 +33,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
