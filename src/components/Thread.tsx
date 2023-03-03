@@ -9,9 +9,9 @@ const Thread: FC<Props> = ({ threadId, children }) => {
   return (
     <a 
       href={`/thread/${threadId}`}
-      className="items-center"
+      className="items-center w-3/4 p-2"
       >
-      {children}
+      <span className='overflow-hidden'>{children}</span>
     </a>
   )
 }
