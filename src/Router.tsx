@@ -5,9 +5,14 @@ import App from "./pages/App";
 const Router: FC = () => (
   <BrowserRouter>
     <Routes>
+      {/* スレッド一覧ページ */}
       <Route path="/" element={<App />} />
-
-      <Route path="/thread/" />
+      {/* スレッド作成ページ */}
+      <Route path="/thread/new" />
+      {/* 各スレッド内ページ */}
+      <Route path="/thread/:threadId" 
+      // loader={}
+      />
     </Routes>
   </BrowserRouter>
 );

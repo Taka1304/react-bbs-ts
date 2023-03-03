@@ -1,8 +1,7 @@
 import { FC, useState } from "react";
 import { useEffect } from "react";
-import "./App.css";
-import Header from "../components/Header";
-import ThreadItem from "../components/Thread";
+import Layout from "src/components/Layout/Layout";
+import ThreadItem from "../components/ThreadItem";
 
 type Thread = {
   id: string;
@@ -22,17 +21,22 @@ const App: FC = () => {
     fetchData();
   }, []);
   return (
-    <div className="App">
-      <Header />
-      <h1>新規スレッド一覧</h1>
-      <div className="flex flex-col items-center justify-center divide-y divide-[30363d]-200 border-blue">
+    <Layout>
+      <h1 className="text-2xl font-bold mb-4">新規スレッド一覧</h1>
+      <div className="flex flex-col justify-center divide-y divide-[#30363d] outline outline-[#30363d] rounded-lg bg-[#1d2222]">
         {threads.map((thread) => (
-          <ThreadItem key={thread.id} threadId={thread.id}>
-            {thread.title}
-          </ThreadItem>
+          <a 
+            key={thread.id}
+            className="after:content['☛']" 
+            href={`/thread/${thread.id}`}
+          >
+            <ThreadItem >
+              {thread.title}
+            </ThreadItem>
+          </a>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 };
 
