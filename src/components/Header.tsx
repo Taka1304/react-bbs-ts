@@ -9,8 +9,8 @@ const Header: FC = () => {
         けいじばん たいとる
       </span>
       <nav>
-        <a href="./thread/new" className="nav-item">新規スレッドをたてる</a>
-        <a href="./" className="nav-item">スレッド一覧</a>
+        <a href="/thread/new" className="nav-item">新規スレッドをたてる</a>
+        <a href="/" className="nav-item">スレッド一覧</a>
       </nav>
     </header>
   )

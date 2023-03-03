@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
+import ThreadItem from './components/Thread';
 
 type Thread = {
   id: string
@@ -21,14 +22,13 @@ const App: FC = () => {
   return (
     <div className="App">
       <Header />
-      <ul>
-
-      {threads.map((thread) => (
-        <li key={thread.id}>
-          {thread.id}: {thread.title}
-        </li>
+      <div className='flex flex-col'>
+        {threads.map((thread) => (
+          <ThreadItem key={thread.id} threadId={thread.id}>
+            {thread.title}
+          </ThreadItem>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
