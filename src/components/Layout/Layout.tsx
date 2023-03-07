@@ -6,9 +6,9 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <div className='min-h-[100vh] text-white bg-[#0d1117]'>
+    <div className='w-fill min-h-[100vh] text-white bg-[#0d1117]'>
       <Header />
-      <div className='m-4'>
+      <div className='p-4 max-w-[1024px] mx-auto'>
         {children}
       </div>
     </div>
