@@ -8,14 +8,13 @@ type Props = {
 
 export const Alert: FC<Props> = ({ variant, children }) => {
   return (
-    <div>
+    <div className='flex items-center'>
       <Icon
-        icon="circle-check-solid"
-        height={"3"}
-        width={"3"}
-        color={"[#fff]"}
+        type="FaCheckCircle"
+        size={"1.5em"}
+        color={"green"}
         />
-      {children}
+      <span className='mx-2'>{children}</span>
     </div>
   )
 }
