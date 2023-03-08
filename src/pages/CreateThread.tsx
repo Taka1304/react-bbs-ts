@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
 import Layout from 'src/components/Layout/Layout'
 import { useCreateThread } from 'src/hooks/useThread'
-import { Link } from 'react-router-dom'
 import { TextField } from 'src/components/foundation/TextField'
 import { Button } from 'src/components/foundation/Button'
 import { Alert } from 'src/components/foundation/Alert/Alert'
+import { Anchor } from 'src/components/foundation/Anchor/Anchor'
 
 const CreateThread: FC = () => {
   const [inputValue, setInputValue] = useState<string>('')
@@ -14,6 +14,11 @@ const CreateThread: FC = () => {
   return (
     <Layout>
       <main className='p-8'>
+        <h1
+          className='font-bold text-2xl mb-4'
+        >
+          新規スレッドを作成
+        </h1>
         <form className='flex flex-col justify-between h-[150px]'>
           <TextField
             label={"スレッド名"}
@@ -34,13 +39,13 @@ const CreateThread: FC = () => {
         {isLoading && <div>
           作成中です…
         </div>}
-        {<div>
+        {data && <div className='mt-4'>
           <Alert variant='success'>
             新規スレッドを作成しました！
           </Alert>
-          <Link to={`/thread/${data?.threadId}`} >
+          <Anchor href={`/thread/${data?.threadId}`}>
             スレッドに移動する
-          </Link>
+          </Anchor>
         </div>}
       </main>
     </Layout>
