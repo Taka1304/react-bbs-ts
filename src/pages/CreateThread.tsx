@@ -13,13 +13,13 @@ const CreateThread: FC = () => {
 
   return (
     <Layout>
-      <main className='p-8'>
+      <main className=''>
         <h1
           className='font-bold text-2xl mb-4'
         >
           新規スレッドを作成
         </h1>
-        <form className='flex flex-col justify-between h-[150px]'>
+        <form className='flex flex-col justify-between h-[150px] max-w-[500px]'>
           <TextField
             label={"スレッド名"}
             type="text"
