@@ -7,7 +7,7 @@ type Props = {
 
 const Pagenation: FC<Props> = ({ index, setIndex }) => {
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation">
       <ul className="inline-flex -space-x-px">
         <li>
           <button 

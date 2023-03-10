@@ -15,11 +15,9 @@ export const useThreadList = (offset=0) => {
   }
 }
 
-
 export const useCreateThread = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<ThreadCreateResponse | undefined>()
-
   
   const fetchPost = async(threadTitle: string) => {
     const sendData = { title: threadTitle }
