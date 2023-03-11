@@ -4,11 +4,11 @@ export type Thread = {
 }
 
 export type ThreadCreateResponse = {
-  threadId: string,
+  id: string,
   title: string
 }
 
-export type post = {
+export type Post = {
   threadId: string,
   posts: [
     {
@@ -16,4 +16,9 @@ export type post = {
       post: string
     }
   ]
+}
+
+export type PostCommentResponse = {
+  id: string,
+  post: string
 }
