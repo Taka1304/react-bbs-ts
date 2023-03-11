@@ -19,7 +19,7 @@ const CreateThread: FC = () => {
         >
           新規スレッドを作成
         </h1>
-        <form className='flex flex-col justify-between h-[150px] max-w-[500px]'>
+        <div className='flex flex-col justify-between h-[150px] max-w-[500px]'>
           <TextField
             label={"スレッド名"}
             type="text"
@@ -31,11 +31,12 @@ const CreateThread: FC = () => {
             type='submit'
             onClick={() => {
               fetchPost(inputValue)
+              setInputValue('')
             }}
           >
             スレッド作成
           </Button>
-        </form>
+        </div>
         {isLoading && <div>
           作成中です…
         </div>}
@@ -43,7 +44,7 @@ const CreateThread: FC = () => {
           <Alert variant='success'>
             新規スレッドを作成しました！
           </Alert>
-          <Anchor href={`/thread/${data?.threadId}`}>
+          <Anchor href={`/thread/${data.id}`}>
             スレッドに移動する
           </Anchor>
         </div>}
