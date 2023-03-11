@@ -1,5 +1,6 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { Alert } from 'src/components/foundation/Alert'
 import { Button } from 'src/components/foundation/Button'
 import { TextArea } from 'src/components/foundation/TextArea/TextArea'
 import Layout from 'src/components/Layout/Layout'
@@ -11,33 +12,23 @@ type param = {
   threadId: string
 }
 
-type Comment = {
-  id: string
-  post: string
-}
-
 const Thread: FC = () => {
   const [inputValue, setInputValue] = useState("")
-  const [comments, setComments] = useState<Comment[]>([])
   const [pageIndex, setPageIndex] = useState(0)
 
   const { threadId } = useParams<param>()
   const { data, isLoading, mutate } = useCommentList(threadId, pageIndex*10)
-  const { fetchPost } = usePostComment()
+  const { error, fetchPost } = usePostComment()
 
   // 送信ボタン押下時
-  const handleSubmit = async () => {
-    if (inputValue !== "" && threadId) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (threadId) {
       await fetchPost(threadId, inputValue)
-      // newComment && setComments((p) => [{ id: newComment.id, post: newComment.post } ,...p])
       data && mutate({...data, posts: [...data.posts]})
       setInputValue("")
     }
   }
-  // data変更時
-  useEffect(() => {
-    data && setComments([...data.posts])
-  },[data])
 
   return (
     <Layout>
@@ -45,8 +36,8 @@ const Thread: FC = () => {
         <div className='col-span-2'>
           <main className='flex flex-col divide-y divide-[#30363d] outline outline-[#30363d] bg-[#161b22] overflow-hidden w-full max-w-[1120px] mb-2'>
             {isLoading && <p>読み込み中です...</p>}
-            {comments.length < 1 && (<p>まだ投稿がありません・。・</p>)}
-            {comments.map((comment, index) => (
+            {data && data.posts.length < 1 && (<p>まだ投稿がありません・。・</p>)}
+            {data && data.posts.map((comment, index) => (
               <ThreadItem key={index} wrap>
                 {comment.post}
               </ThreadItem>
@@ -56,8 +47,9 @@ const Thread: FC = () => {
             <Pagenation index={pageIndex} setIndex={setPageIndex} />
           </div>
         </div>
-        <div>
+        <form onSubmit={handleSubmit}>
           <TextArea 
+            required
             id='comment'
             label="書き込む"
             onChange={(e) => setInputValue(e.target.value)}
@@ -65,10 +57,13 @@ const Thread: FC = () => {
             rows={6}
             value={inputValue}
             />
-          <Button onClick={handleSubmit}>
+          <Button>
             送信
           </Button>
-        </div>
+        </form>
+        {error !== "" && <Alert variant='error'>
+          {error}
+        </Alert>}
       </div>
       
     </Layout>

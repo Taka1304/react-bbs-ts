@@ -11,6 +11,12 @@ const CreateThread: FC = () => {
   
   const { data, fetchPost, isLoading } = useCreateThread()
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    fetchPost(inputValue)
+    setInputValue('')
+  }
+
   return (
     <Layout>
       <main className=''>
@@ -19,24 +25,21 @@ const CreateThread: FC = () => {
         >
           新規スレッドを作成
         </h1>
-        <div className='flex flex-col justify-between h-[150px] max-w-[500px]'>
+        <form className='flex flex-col justify-between h-[150px] max-w-[500px]'
+          onSubmit={handleSubmit}
+        >
           <TextField
+            required
             label={"スレッド名"}
             type="text"
             value={inputValue}
             placeholder="スレッド名を入力"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <Button
-            type='submit'
-            onClick={() => {
-              fetchPost(inputValue)
-              setInputValue('')
-            }}
-          >
+          <Button type='submit'>
             スレッド作成
           </Button>
-        </div>
+        </form>
         {isLoading && <div>
           作成中です…
         </div>}

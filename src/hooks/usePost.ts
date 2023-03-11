@@ -23,11 +23,13 @@ export const useCommentList = (threadId: string | undefined, offset = 0) => {
 
 export const usePostComment = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("")
 
   const fetchPost = async (threadId: string, comment: string): Promise<PostCommentResponse | undefined> => {
     const sendData = { post: comment };
     try {
       setIsLoading(true);
+      setError("")
       const res = await fetch(`${baseUrl + threadId}/posts`, {
         method: "POST",
         headers: {
@@ -37,12 +39,15 @@ export const usePostComment = () => {
       });
       return await res.json()
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        setError(error.message);
+      }
     } finally {
       setIsLoading(false);
     }
   };
   return {
+    error,
     fetchPost,
     isLoading,
   };
