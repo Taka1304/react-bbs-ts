@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { Thread, ThreadCreateResponse } from 'src/types'
+import type { Thread, ThreadCreateResponse } from 'src/types'
 import { useState } from 'react'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
@@ -30,9 +30,8 @@ export const useCreateThread = () => {
         },
         body: JSON.stringify(sendData)
       })
-      if (res.ok) {
+      if (res.status === 200) {
         setData(await res.json())
-        console.log(res.json())
       }
     } catch (error) {
       console.log(error)
