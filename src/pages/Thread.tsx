@@ -22,15 +22,15 @@ const Thread: FC = () => {
   const [pageIndex, setPageIndex] = useState(0)
 
   const { threadId } = useParams<param>()
-  const { data, isLoading } = useCommentList(threadId, pageIndex*10)
+  const { data, isLoading, mutate } = useCommentList(threadId, pageIndex*10)
   const { fetchPost } = usePostComment()
 
   // 送信ボタン押下時
   const handleSubmit = async () => {
     if (inputValue !== "" && threadId) {
-      const newComment = await fetchPost(threadId, inputValue)
-      newComment && setComments((p) => [{ id: newComment.id, post: newComment.post } ,...p])
-      // data && newComment && mutate({...data, posts: [{ id: newComment.id, post: newComment.post }]})
+      await fetchPost(threadId, inputValue)
+      // newComment && setComments((p) => [{ id: newComment.id, post: newComment.post } ,...p])
+      data && mutate({...data, posts: [...data.posts]})
       setInputValue("")
     }
   }
