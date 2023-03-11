@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
@@ -10,11 +10,7 @@ const ThreadItem: FC<Props> = ({ children, wrap }) => {
     <div 
       className="items-center p-2"
       >
-      {wrap ? 
-      <p className='truncate whitespace-pre-wrap'>{children}</p>
-      :
-      <p className='truncate'>{children}</p>
-      }
+      <p className={`truncate ${wrap && "whitespace-pre-wrap"}`}>{children}</p>
     </div>
   )
 }
