@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button } from 'src/components/foundation/Button'
 import { TextArea } from 'src/components/foundation/TextArea/TextArea'

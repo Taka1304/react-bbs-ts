@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import Layout from 'src/components/Layout/Layout'
 import { useCreateThread } from 'src/hooks/useThread'
 import { TextField } from 'src/components/foundation/TextField'

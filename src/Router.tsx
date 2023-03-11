@@ -12,9 +12,7 @@ const Router: FC = () => (
       {/* スレッド作成ページ */}
       <Route path="/thread/new" element={<CreateThread />} />
       {/* 各スレッド内ページ */}
-      <Route path="/thread/:threadId" element={<Thread />}
-      // loader={}
-      />
+      <Route path="/thread/:threadId" element={<Thread />} />
     </Routes>
   </BrowserRouter>
 );
